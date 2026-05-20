@@ -33,6 +33,7 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setName(secureUser.getName());
         user.setPassword(passwordEncoder.encode(secureUser.getPassword()));
+        user.setEmail(secureUser.getEmail());
         user.setRole("User");
         User savedUser = userRepository.save(user);
         return savedUser;

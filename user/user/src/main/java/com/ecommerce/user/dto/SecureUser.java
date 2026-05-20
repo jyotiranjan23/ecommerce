@@ -11,5 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SecureUser {
     private String name;
+    private String email;
     private String password;
 }
