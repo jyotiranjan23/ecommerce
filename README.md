@@ -52,3 +52,18 @@ Run the same command from each service folder in a separate terminal.
 ## GitHub Notes
 
 Generated folders such as `build/`, `.gradle/`, `.idea/`, and local secret files are ignored by Git. Do not commit real passwords, tokens, or production database URLs.
+
+## Render Deployment
+
+This repository includes a `render.yaml` Blueprint and one Dockerfile per service.
+
+Before creating the Blueprint on Render, prepare a hosted MySQL database and keep these values ready:
+
+```text
+DB_URL=jdbc:mysql://YOUR_MYSQL_HOST:3306/YOUR_DATABASE
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+ADMIN_PASSWORD=your_initial_admin_password
+```
+
+In Render, create a new Blueprint from this GitHub repository. Render will prompt for the secret values marked with `sync: false`.

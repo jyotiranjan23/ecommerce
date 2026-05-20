@@ -1,0 +1,105 @@
+services:
+  - type: web
+    name: ecommerce-service-registry
+    runtime: docker
+    plan: free
+    rootDir: serviceRegistry/serviceRegistry
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    envVars:
+      - key: EUREKA_HOSTNAME
+        value: ecommerce-service-registry.onrender.com
+
+  - type: web
+    name: ecommerce-user
+    runtime: docker
+    plan: free
+    rootDir: user/user
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: EUREKA_URL
+        value: https://ecommerce-service-registry.onrender.com/eureka/
+
+  - type: web
+    name: ecommerce-product
+    runtime: docker
+    plan: free
+    rootDir: product/product
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DB_URL
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: DB_URL
+      - key: DB_USERNAME
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: DB_USERNAME
+      - key: DB_PASSWORD
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: DB_PASSWORD
+      - key: JWT_SECRET
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: JWT_SECRET
+      - key: EUREKA_URL
+        value: https://ecommerce-service-registry.onrender.com/eureka/
+
+  - type: web
+    name: ecommerce-cart
+    runtime: docker
+    plan: free
+    rootDir: cart/cart
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DB_URL
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: DB_URL
+      - key: DB_USERNAME
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: DB_USERNAME
+      - key: DB_PASSWORD
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: DB_PASSWORD
+      - key: JWT_SECRET
+        fromService:
+          type: web
+          name: ecommerce-user
+          envVarKey: JWT_SECRET
+      - key: EUREKA_URL
+        value: https://ecommerce-service-registry.onrender.com/eureka/
+
+  - type: web
+    name: ecommerce-api-gateway
+    runtime: docker
+    plan: free
+    rootDir: apiGateway/apiGateway
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    envVars:
+      - key: EUREKA_URL
+        value: https://ecommerce-service-registry.onrender.com/eureka/
