@@ -30,6 +30,10 @@ services:
         sync: false
       - key: EUREKA_URL
         value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
+      - key: EUREKA_SECURE_PORT_ENABLED
+        value: true
+      - key: EUREKA_NON_SECURE_PORT_ENABLED
+        value: false
 
   - type: web
     name: ecommerce-product
@@ -61,6 +65,10 @@ services:
           envVarKey: JWT_SECRET
       - key: EUREKA_URL
         value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
+      - key: EUREKA_SECURE_PORT_ENABLED
+        value: true
+      - key: EUREKA_NON_SECURE_PORT_ENABLED
+        value: false
 
   - type: web
     name: ecommerce-cart
@@ -92,6 +100,10 @@ services:
           envVarKey: JWT_SECRET
       - key: EUREKA_URL
         value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
+      - key: EUREKA_SECURE_PORT_ENABLED
+        value: true
+      - key: EUREKA_NON_SECURE_PORT_ENABLED
+        value: false
 
   - type: web
     name: ecommerce-api-gateway
@@ -103,4 +115,9 @@ services:
     envVars:
       - key: EUREKA_URL
         value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
+      - key: EUREKA_SECURE_PORT_ENABLED
+        value: true
+      - key: EUREKA_NON_SECURE_PORT_ENABLED
+        value: false
+
 

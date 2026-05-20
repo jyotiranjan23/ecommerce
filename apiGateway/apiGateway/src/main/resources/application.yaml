@@ -24,6 +24,11 @@ spring:
                 - Path=/ecommerce/cart/**
 
 eureka:
+  instance:
+    hostname: ${RENDER_EXTERNAL_HOSTNAME:localhost}
+    secure-port-enabled: ${EUREKA_SECURE_PORT_ENABLED:false}
+    non-secure-port-enabled: ${EUREKA_NON_SECURE_PORT_ENABLED:true}
+    secure-port: 443
   client:
     service-url:
       defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
