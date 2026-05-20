@@ -6,23 +6,21 @@ spring:
     name: API-GATEWAY
   cloud:
     gateway:
-      server:
-        webmvc:
-          routes:
-            - id: USER-SERVICE
-              uri: lb://USER-SERVICE
-              predicates:
-                - Path=/ecommerce/user/**
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/ecommerce/user/**
 
-            - id: PRODUCT-SERVICE
-              uri: lb://PRODUCT-SERVICE
-              predicates:
-                - Path=/ecommerce/product/**
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/ecommerce/product/**
 
-            - id: CART-SERVICE
-              uri: lb://CART-SERVICE
-              predicates:
-                - Path=/ecommerce/cart/**
+        - id: CART-SERVICE
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/ecommerce/cart/**
 
 eureka:
   instance:
@@ -33,4 +31,3 @@ eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
-
