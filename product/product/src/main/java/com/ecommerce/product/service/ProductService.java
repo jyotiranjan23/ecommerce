@@ -21,6 +21,7 @@ public class ProductService {
         product.setDescription(productRequest.getDescription());
         product.setCategory(productRequest.getCategory());
         product.setPrice(productRequest.getPrice());
+        product.setImageUrl(productRequest.getImageUrl());
         productRepository.save(product);
     }
     public ProductResponse getProductById(Long id){
@@ -41,6 +42,7 @@ public class ProductService {
         product.setDescription(productRequest.getDescription());
         product.setCategory(productRequest.getCategory());
         product.setPrice(productRequest.getPrice());
+        product.setImageUrl(productRequest.getImageUrl());
         productRepository.save(product);
         return mapToProductResponse(product);
     }
@@ -58,6 +60,7 @@ public class ProductService {
             productResponse.setDescription(product.getDescription());
             productResponse.setCategory(product.getCategory());
             productResponse.setPrice(product.getPrice());
+            productResponse.setImageUrl(product.getImageUrl());
             return productResponse;
     }
     

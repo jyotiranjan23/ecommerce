@@ -29,6 +29,7 @@ public class Product {
     private String description;
     private String category;
     private BigDecimal price;
+    private String imageUrl;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
