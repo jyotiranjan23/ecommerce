@@ -8,7 +8,7 @@ services:
     dockerContext: .
     envVars:
       - key: EUREKA_HOSTNAME
-        value: ecommerce-service-registry.onrender.com
+        value: ecommerce-service-registry-45uu.onrender.com
 
   - type: web
     name: ecommerce-user
@@ -29,7 +29,7 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: EUREKA_URL
-        value: https://ecommerce-service-registry.onrender.com/eureka/
+        value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
 
   - type: web
     name: ecommerce-product
@@ -60,7 +60,7 @@ services:
           name: ecommerce-user
           envVarKey: JWT_SECRET
       - key: EUREKA_URL
-        value: https://ecommerce-service-registry.onrender.com/eureka/
+        value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
 
   - type: web
     name: ecommerce-cart
@@ -91,7 +91,7 @@ services:
           name: ecommerce-user
           envVarKey: JWT_SECRET
       - key: EUREKA_URL
-        value: https://ecommerce-service-registry.onrender.com/eureka/
+        value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
 
   - type: web
     name: ecommerce-api-gateway
@@ -102,4 +102,5 @@ services:
     dockerContext: .
     envVars:
       - key: EUREKA_URL
-        value: https://ecommerce-service-registry.onrender.com/eureka/
+        value: https://ecommerce-service-registry-45uu.onrender.com/eureka/
+
