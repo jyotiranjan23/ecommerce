@@ -10,17 +10,17 @@ spring:
         webflux:
           routes:
             - id: USER-SERVICE
-              uri: lb://USER-SERVICE
+              uri: ${USER_SERVICE_URL:https://ecommerce-user-ilw7.onrender.com}
               predicates:
                 - Path=/ecommerce/user/**
 
             - id: PRODUCT-SERVICE
-              uri: lb://PRODUCT-SERVICE
+              uri: ${PRODUCT_SERVICE_URL:https://ecommerce-product-3k7q.onrender.com}
               predicates:
                 - Path=/ecommerce/product/**
 
             - id: CART-SERVICE
-              uri: lb://CART-SERVICE
+              uri: ${CART_SERVICE_URL:https://ecommerce-cart-isg6.onrender.com}
               predicates:
                 - Path=/ecommerce/cart/**
 
