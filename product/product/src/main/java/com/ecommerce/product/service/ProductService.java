@@ -2,6 +2,7 @@ package com.ecommerce.product.service;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import com.ecommerce.product.entity.Product;
 import com.ecommerce.product.repository.ProductRepository;
 
 @Service
+@Slf4j
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
@@ -44,6 +46,7 @@ public class ProductService {
         product.setPrice(productRequest.getPrice());
         product.setImageUrl(productRequest.getImageUrl());
         productRepository.save(product);
+        log.info("Image url {}", product.getImageUrl());
         return mapToProductResponse(product);
     }
     public void deleteProduct(Long id){
