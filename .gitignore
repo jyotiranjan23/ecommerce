@@ -1,0 +1,30 @@
+# Gradle / build output
+.gradle/
+build/
+**/.gradle/
+**/build/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment / secrets
+.env
+*.env
+application-local.yaml
+application-local.yml
+application-secret.yaml
+application-secret.yml
