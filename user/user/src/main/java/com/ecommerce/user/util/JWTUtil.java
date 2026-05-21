@@ -27,12 +27,13 @@ public class JWTUtil {
 
     public String generateToken(User user){
         return Jwts.builder()
-        .setSubject(user.getId().toString())
-        .setIssuedAt(new Date())
-        .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
-        .signWith(key, SignatureAlgorithm.HS256)
-        .claim("id", user.getId())
-        .compact();
+                .setSubject(user.getName())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .claim("id", user.getId())
+                .claim("role", user.getRole())
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
     }
     public String extractUserName(String token){
         return extractClaims(token).getSubject();
