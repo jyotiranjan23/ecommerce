@@ -24,7 +24,7 @@ public class JWTUtil {
     public String extractUserName(String token){
         return extractClaims(token).getSubject();
     }
-    private Claims extractClaims(String token){
+    public Claims extractClaims(String token){
         Claims body = Jwts.parserBuilder()
         .setSigningKey(key)
         .build()
@@ -43,6 +43,7 @@ public class JWTUtil {
         .getExpiration()
         .before(new Date());
     }
+
 
 
 }
