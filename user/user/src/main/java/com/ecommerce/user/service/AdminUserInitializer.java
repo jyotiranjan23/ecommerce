@@ -15,11 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AdminUserInitializer {
 
-    @Value("${ADMIN_USERNAME:admin}")
-    private String adminUsername;
+    private final String adminUsername =
+            System.getenv().getOrDefault("ADMIN_USERNAME", "admin");
 
-    @Value("${ADMIN_PASSWORD}")
-    private String adminPassword;
+    private final String adminPassword =
+            System.getenv().getOrDefault("ADMIN_PASSWORD", "admin123");
+
+    private final String adminEmail =
+            System.getenv().getOrDefault("ADMIN_EMAIL", "admin@gmail.com");
 
     @Bean
     public CommandLineRunner createAdminUser(UserRepository userRepository, PasswordEncoder passwordEncoder){
@@ -28,6 +31,7 @@ public class AdminUserInitializer {
                 User admin = new User();
                 admin.setName(adminUsername);
                 admin.setPassword(passwordEncoder.encode(adminPassword));
+                admin.setEmail(adminEmail);
                 admin.setRole("ADMIN");
                 userRepository.save(admin);
                 log.info("Default admin user created!!!");
