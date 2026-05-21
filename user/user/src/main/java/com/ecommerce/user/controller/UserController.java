@@ -2,6 +2,7 @@ package com.ecommerce.user.controller;
 
 import java.util.List;
 
+import com.ecommerce.user.dto.LoginResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,12 +39,12 @@ public class UserController {
         return new ResponseEntity<>("User Registered", HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody SecureUser secureUser){
+    public ResponseEntity<LoginResponse> login(@RequestBody SecureUser secureUser){
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(secureUser.getName(), secureUser.getPassword())
         );
         User dbUser = userService.findByName(secureUser.getName());
-        return new ResponseEntity<>(jwtUtil.generateToken(dbUser), HttpStatus.OK);
+        return new ResponseEntity<>(new LoginResponse(jwtUtil.generateToken(dbUser), dbUser.getRole()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
