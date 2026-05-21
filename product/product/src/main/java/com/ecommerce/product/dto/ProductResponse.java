@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductResponse {
+    private Long id;
     private String name;
     private int stock;
     private String description;
